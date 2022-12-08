@@ -1,0 +1,15 @@
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+RUN npm install
+
+# do we need the copy? better keep it as we might decide to use this file for other application that
+# do not use volumes
+COPY . .
+
+# instead COPY use Docker volumes (see intruction)
+CMD ["npm", "run", "start"]
+
+# to run this docker build -f Dockerfile.dev .

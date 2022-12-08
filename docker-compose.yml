@@ -1,0 +1,19 @@
+version: '3'
+services:
+  web-app:
+    build: # build . will give an error as there are different dockerfiles
+      context: . # where we want the files and folders to be pulled from (current directory)
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+#      - /app/node_modules
+      - .:/app  #. = current folder outside the container
+  tests: #service for making test
+    build: # build . will give an error as there are different dockerfiles
+      context: . # where we want the files and folders to be pulled from (current directory)
+      dockerfile: Dockerfile.dev
+    volumes:
+#      - /app/node_modules
+      - .:/app  #. = current folder outside the container
+    command: ["npm", "run", "test"]
