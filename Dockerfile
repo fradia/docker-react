@@ -1,7 +1,7 @@
 #build phase
-FROM node:19-alpine3.15 as builder
+FROM node:alpine as builder
 
-WORKDIR '/app'
+WORKDIR /app
 
 COPY package.json .
 RUN npm install
@@ -12,5 +12,4 @@ RUN npm run build
 #run phase
 FROM nginx
 # copy from the builder phase. The destination folder is a setting from ngnix
-COPY --from=builder /app/build  /user/share/nginx/html
-# this will automatically start the ngnix container (no extra command should be specified)
+COPY --from=builder /app/build  /usr/share/nginx/html
