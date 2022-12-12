@@ -63,7 +63,7 @@ jobs:
 
       - name: Apply
         run: |-
-          kubectl apply -f k8s
+          kubectl apply
           kubectl set image deployments/server-deployment server=fracc/multi-server-k8s-pgfix-gh:${{ env.SHA }}
           kubectl set image deployments/client-deployment client=fracc/multi-client-k8s-gh:${{ env.SHA }}
           kubectl set image deployments/worker-deployment worker=fracc/multi-worker-k8s-gh:${{ env.SHA }}
