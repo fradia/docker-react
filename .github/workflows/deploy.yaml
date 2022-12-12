@@ -47,9 +47,9 @@ jobs:
 
       - name: Build
         run: |-
-          docker build -t fracc/multi-client-k8s-gh:latest -t fracc/multi-client-k8s-gh:${{ env.SHA }} -f Dockerfile ./client
-          docker build -t fracc/multi-server-k8s-pgfix-gh:latest -t fracc/multi-server-k8s-pgfix-gh:${{ env.SHA }} -f Dockerfile ./server
-          docker build -t fracc/multi-worker-k8s-gh:latest -t fracc/multi-worker-k8s-gh:${{ env.SHA }} -f Dockerfile ./worker
+          docker build -t fracc/multi-client-k8s-gh:latest -t fracc/multi-client-k8s-gh:${{ env.SHA }} -f Dockerfile .
+          docker build -t fracc/multi-server-k8s-pgfix-gh:latest -t fracc/multi-server-k8s-pgfix-gh:${{ env.SHA }} -f Dockerfile .
+          docker build -t fracc/multi-worker-k8s-gh:latest -t fracc/multi-worker-k8s-gh:${{ env.SHA }} -f Dockerfile .
 
       - name: Push
         run: |-
@@ -75,9 +75,9 @@ jobs:
 
       - name: Build
         run: |-
-          docker build -t fracc/multi-client-k8s-gh:latest -t fracc/multi-client-k8s-gh:${{ env.SHA }} -f Dockerfile ./client
-          docker build -t fracc/multi-server-k8s-pgfix-gh:latest -t fracc/multi-server-k8s-pgfix-gh:${{ env.SHA }} -f Dockerfile ./server
-          docker build -t fracc/multi-worker-k8s-gh:latest -t fracc/multi-worker-k8s-gh:${{ env.SHA }} -f Dockerfile ./worker
+          docker build -t fracc/multi-client-k8s-gh:latest -t fracc/multi-client-k8s-gh:${{ env.SHA }} -f Dockerfile .
+          docker build -t fracc/multi-server-k8s-pgfix-gh:latest -t fracc/multi-server-k8s-pgfix-gh:${{ env.SHA }} -f Dockerfile .
+          docker build -t fracc/multi-worker-k8s-gh:latest -t fracc/multi-worker-k8s-gh:${{ env.SHA }} -f Dockerfile .
 
       - name: Push
         run: |-
