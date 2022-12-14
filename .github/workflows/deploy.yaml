@@ -33,7 +33,7 @@ jobs:
         uses: 'google-github-actions/auth@v0'
         with:
           workload_identity_provider: 'projects/950268361153/locations/global/workloadIdentityPools/docker-react-test-pool/providers/docker-react-test-provider'
-          service_account: '{{ secrets.SERVICE_ACCOUNT }}@${{ secrets.GKE_PROJECT }}.iam.gserviceaccount.com'
+          service_account: 'udemy-doker-k8s@${{ secrets.GKE_PROJECT }}.iam.gserviceaccount.com'
 
       - name: Auth
         run: |-
