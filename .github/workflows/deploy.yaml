@@ -5,10 +5,10 @@ on:
       - main
 
 env:
-  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+#  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   SHA: $(git rev-parse HEAD)
   LOCATION: europe-west1
-  SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
+#  SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
   IMAGE: docker-react-app
 
 
@@ -33,7 +33,7 @@ jobs:
         uses: 'google-github-actions/auth@v0'
         with:
           workload_identity_provider: 'projects/950268361153/locations/global/workloadIdentityPools/docker-react-test-pool/providers/docker-react-test-provider'
-          service_account: '{{ env.SERVICE_ACCOUNT }}@${{ env.PROJECT_ID }}.iam.gserviceaccount.com'
+          service_account: '{{ secrets.SERVICE_ACCOUNT }}@${{ secrets.GKE_PROJECT }}.iam.gserviceaccount.com'
 
       - name: Auth
         run: |-
@@ -41,16 +41,16 @@ jobs:
 
       - name: Build
         run: |-
-          docker build -t "gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE }}" -f Dockerfile .
+          docker build -t "gcr.io/${{ secrets.GKE_PROJECT }}/${{ env.IMAGE }}" -f Dockerfile .
 
       - name: Push
         run: |-
-          docker push "gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE }}"
+          docker push "gcr.io/${{ secrets.GKE_PROJECT }}/${{ env.IMAGE }}"
 
       - name: Deploy
         uses: "google-github-actions/deploy-cloudrun@v0"
         with:
-          image: gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE }}
+          image: gcr.io/${{ secrets.GKE_PROJECT }}/${{ env.IMAGE }}
           region: ${{ env.LOCATION }}
           service: app
           flags: --port=8080
