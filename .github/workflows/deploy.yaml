@@ -8,7 +8,7 @@ env:
 #  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   SHA: $(git rev-parse HEAD)
   LOCATION: europe-west1
-#  SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
+  SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
   IMAGE: docker-react-app
 
 
@@ -33,7 +33,7 @@ jobs:
         uses: 'google-github-actions/auth@v0'
         with:
           workload_identity_provider: 'projects/950268361153/locations/global/workloadIdentityPools/docker-react-test-pool/providers/docker-react-test-provider'
-          service_account: 'udemy-doker-k8s@${{ secrets.GKE_PROJECT }}.iam.gserviceaccount.com'
+          service_account: '{{ env.SERVICE_ACCOUNT }}@${{ secrets.GKE_PROJECT }}.iam.gserviceaccount.com'
 
       - name: Auth
         run: |-
